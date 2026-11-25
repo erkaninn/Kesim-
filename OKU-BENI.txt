@@ -1,7 +1,5 @@
-KESIM TAKIP - iPhone uygulamasi
+KESIM TAKIP - iPhone uygulamasi (surum 2)
 
-Bu klasordeki dosyalarin HEPSINI ayni yere (ayni klasore) yukle:
-index.html, manifest.webmanifest, sw.js, icon-192.png, icon-512.png, apple-touch-icon.png
-
-Yukledikten sonra adresi Safari'de ac -> Paylas -> Ana Ekrana Ekle.
-Veriler telefonun icinde saklanir. Duzenli olarak Kaydet -> Telefona yedekle ile dosya yedegi al.
+GUNCELLEME: GitHub'da deponu ac -> Add file -> Upload files -> bu klasordeki dosyalarin HEPSINI sec
+-> Commit changes. Ayni isimli dosyalarin uzerine yazilir. Verilerin silinmez.
+Sonra uygulamayi ana ekrandan bir kez kapat, iki kez ac (yeni surum ikinci acilista gelir).
