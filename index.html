@@ -166,7 +166,7 @@ label.dz{margin:0;display:flex;flex-direction:column;gap:2px;font-size:12px;colo
 @media print{.doc .sin{border:0;padding:0}.cx{display:none!important}}
 .sz span{display:inline-block;padding:10px 14px;border:1px solid var(--bd);border-radius:10px;background:var(--card);font-weight:600;font-size:15px}
 .sz input:checked+span{background:var(--ac);border-color:var(--ac);color:#fff}
-</style>
+.ver{text-align:center;color:var(--mu);font-size:12px;margin:22px 0 10px}.lnk{background:none;border:0;color:var(--ac);font-weight:700;font-size:12px;padding:6px}</style>
 </head>
 <body>
 <div class="wrap" id="app"></div>
@@ -397,8 +397,9 @@ function home(){
   var T=[["truck","Sevkiyat",ships.length,function(){slist()},1],["scissors","Kesilenler",c[0],function(){curSec=0;listLimit=60;list()}],["clock","Atölyede",c[1],function(){curSec=1;listLimit=60;list()}],["check","Tamamlananlar",c[2],function(){curSec=2;listLimit=60;list()}],["shirt","Modeller",models.length,function(){mlist()}],["factory","Atölyeciler",ateliers.length,function(){alist()}],["scale","Gramaj",grams.length,function(){glist()}],["chart","Özet",fk(OZ.ws.left)+" adet atölyede",function(){ozet()},1]];
   var h='<h1>Kesim Takip</h1><div class="top"><button class="sm" id="bk" style="flex:1">'+ico("save")+' Kaydet</button><button class="sm" id="ld" style="flex:1">'+ico("upload")+' Yükle</button></div><div class="grid">';
   T.forEach(function(t,k){h+='<div class="tile'+(t[4]?' wide':'')+'" data-k="'+k+'"><div class="ic">'+ico(t[0])+'</div><div class="tl">'+t[1]+'</div><div class="tc">'+t[2]+'</div></div>'});
-  h+='</div>';
+  h+='</div><div class=\"ver\">Sürüm 5 · <button class=\"lnk\" id=\"upd\">Güncellemeyi denetle</button></div>';
   app.className="wrap";app.innerHTML=h;window.scrollTo(0,0);
+  var ub=document.getElementById("upd");if(ub)ub.onclick=function(){ub.textContent="Güncelleniyor…";window.forceUpdate()};
   document.getElementById("bk").onclick=doExport;document.getElementById("ld").onclick=function(){sheet("import")};
   Array.prototype.forEach.call(document.querySelectorAll(".tile"),function(el){el.onclick=function(){T[Number(el.getAttribute("data-k"))][3]()}});
 }
@@ -640,7 +641,8 @@ open().then(function(d){db=d;return loadAll(d)}).then(function(o){mem=o;
   KEYS.forEach(function(k){if(mem[k]==null){try{var v=window.localStorage.getItem(k);if(v!=null){mem[k]=v;db.transaction("kv","readwrite").objectStore("kv").put(v,k)}}catch(e){}}});
   startApp()}).catch(function(){window.LS=window.localStorage;startApp()});
 })();
-if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
+window.forceUpdate=function(){var go=function(){location.reload()},p=[];if(navigator.serviceWorker&&navigator.serviceWorker.getRegistrations)p.push(navigator.serviceWorker.getRegistrations().then(function(rs){return Promise.all(rs.map(function(r){return r.unregister()}))}));if(window.caches)p.push(caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}));Promise.all(p).then(go,go)};
+if("serviceWorker" in navigator){var had=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener("controllerchange",function(){if(had&&!window.__rl){window.__rl=1;location.reload()}});window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").then(function(reg){reg.update();document.addEventListener("visibilitychange",function(){if(!document.hidden)reg.update()})}).catch(function(){})})}
 </script>
 </body>
 </html>

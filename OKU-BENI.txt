@@ -1,5 +1,5 @@
-KESIM TAKIP - iPhone uygulamasi (surum 2)
+KESIM TAKIP - iPhone uygulamasi (surum 5)
 
 GUNCELLEME: GitHub'da deponu ac -> Add file -> Upload files -> bu klasordeki dosyalarin HEPSINI sec
--> Commit changes. Ayni isimli dosyalarin uzerine yazilir. Verilerin silinmez.
-Sonra uygulamayi ana ekrandan bir kez kapat, iki kez ac (yeni surum ikinci acilista gelir).
+-> Commit changes (main'e). Ayni isimli dosyalarin uzerine yazilir. Verilerin silinmez.
+Uygulamada ana ekranin en altindaki "Guncellemeyi denetle" butonuna bas: yeni surum yuklenir, verilere dokunmaz.
